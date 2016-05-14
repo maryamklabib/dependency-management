@@ -1,4 +1,5 @@
 # Dependency Management
+The hardest part of learning web development/programming has been managing dependencies. This repo is in the hopes that I make sense of this mess. For more details on anything, see QIFA below.
 
 
 ### Ruby
@@ -47,9 +48,34 @@ Sanity check with `ruby -v`
 
 ### AngularJS
 
-build: grunt vs gulp 
-package manager: bower and npm
+npm install -g grunt-cli bower yo generator-karma generator-angular
+
+yo angular didactic-funicular
+used grunt not gulp
+gem install compass
+npm install grunt-karma --save-dev
+npm install karma-phantomjs-launcher --save-dev
+npm install karma-jasmine --save-dev
+npm install generator-karma
+npm install jasmine-core
+npm install grunt
+npm install phantomjs-prebuilt
+until finally
+`grunt`
+succeeded
+`grunt serve` brought up a webpage
 
 ### ReactJS
 
 ### Python
+
+
+##QIFA
+(Questions I Frequently Asked)
+
+*Should I use grunt or gulp?*
+
+*Should I use Bower or NPM?*
+
+*How do I test that my web app can run on a server and not just my local setup without actually pushing it and breaking the live app?*
+
