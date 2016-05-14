@@ -47,6 +47,9 @@ Sanity check with `ruby -v`
 
 ### AngularJS
 
+build: grunt vs gulp 
+package manager: bower and npm
+
 ### ReactJS
 
 ### Python
