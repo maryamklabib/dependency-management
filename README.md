@@ -48,6 +48,8 @@ Sanity check with `ruby -v`
 
 ### AngularJS
 
+AngularJS is a toolset for building the framework most suited to your application development.
+
 npm install -g grunt-cli bower yo generator-karma generator-angular
 
 yo angular didactic-funicular
@@ -68,6 +70,17 @@ succeeded
 ### ReactJS
 
 ### Python
+
+### Testing
+Karma
+
+Spectacular Test Runner for JavaScript.
+
+### Frameworks
+HTML5 Boilerplate
+
+HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
+
 
 
 ##QIFA
