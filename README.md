@@ -1,94 +1,75 @@
-# Dependency Management
-The hardest part of learning web development/programming has been managing dependencies. This repo is in the hopes that I make sense of this mess. For more details on anything, see QIFA below.
+# sprout-wrap
 
+[![Build Status](https://travis-ci.org/pivotal-sprout/sprout-wrap.png?branch=master)](https://travis-ci.org/pivotal-sprout/sprout-wrap)
 
-### Ruby
-**Problem: I need Ruby**
+## Prerequisites
 
-Solution: You may have Ruby already if your OS has a native package management system and comes with Ruby installed.
+Download and install [XCode 7 from the App Store](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
 
-This means if you type:
-`ruby -v`
-in whatever command line you have, you will see the version your OS has. This version is usually not the latest.
+## Installation
 
-Package Managers: OS X, Ubuntu, CentOS, ... but if you have Windows, you will have a bad time.
+To provision your machine, open up Terminal and enter the following:
 
-**Problem: I need Ruby 2.3.0**
+```sh
+sudo xcodebuild -license
+xcode-select --install
+git clone https://github.com/pivotal-sprout/sprout-wrap.git
+cd sprout-wrap
+sudo gem install bundler
+bundle install --path vendor/bundle
+caffeinate bundle exec soloist
+```
 
-Solution:
-To get Ruby, you need an installer. 
-**In Ruby, you can install more than one version at a time.** 
+The `caffeinate` command will keep your computer awake while installing; depending on your network connection, soloist can take from 10 minutes to 2 hours to complete.
 
-You have a few options: ruby-build, ruby-install, RubyInstaller (Windows)
+## Problems?
 
-If you go with ruby-install:
-`brew install ruby-install`
+### clang error
 
-Now use the installer to install the version you want:
-`ruby-install ruby 2.3.0`
+If you receive errors like this:
 
-Now you need a manager. 
-**A manager manages which version you are using.** 
-You have a few options: chruby, rbenv, RVM, uru
-If you go with RVM:
-`\curl -sSL https://get.rvm.io | bash -s stable --ruby`
+    clang: error: unknown argument: '-multiply_definedsuppress'
 
-Now you want to tell your manager which version to use.
-`rvm use ruby 2.3.0`
+then try downgrading those errors like this:
 
-If you want to make this the default version everywhere:
-`rvm use ruby 2.3.0 --default`
+    sudo ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future bundle
 
-Now you have Ruby. Always beware of which version you are using.
-Sanity check with `ruby -v`
+### Command Line Tool Update Server
 
-### Rails
+If you receive a message about the update server being unavailable and are on Mavericks, then you already have the command line tools.
 
-### Javascript
+## Customization
 
-### AngularJS
+This project uses [soloist](https://github.com/mkocher/soloist) and [librarian-chef](https://github.com/applicationsonline/librarian-chef)
+to run a subset of the recipes in sprout's cookbooks.
 
-AngularJS is a toolset for building the framework most suited to your application development.
+[Fork it](https://github.com/pivotal-sprout/sprout-wrap/fork) to 
+customize its [attributes](http://docs.chef.io/attributes.html) in [soloistrc](/soloistrc) and the list of recipes 
+you'd like to use for your team. You may also want to add other cookbooks to its [Cheffile](/Cheffile), perhaps one 
+of the many [community cookbooks](https://supermarket.chef.io/cookbooks). By default it configures an OS X 
+Mavericks workstation for Ruby development.
 
-npm install -g grunt-cli bower yo generator-karma generator-angular
+Finally, if you've never used Chef before - we highly recommend you buy &amp; watch [this excellent 17 minute screencast](http://railscasts.com/episodes/339-chef-solo-basics) by Ryan Bates. 
 
-yo angular didactic-funicular
-used grunt not gulp
-gem install compass
-npm install grunt-karma --save-dev
-npm install karma-phantomjs-launcher --save-dev
-npm install karma-jasmine --save-dev
-npm install generator-karma
-npm install jasmine-core
-npm install grunt
-npm install phantomjs-prebuilt
-until finally
-`grunt`
-succeeded
-`grunt serve` brought up a webpage
+## Caveats
 
-### ReactJS
+### Homebrew
 
-### Python
+- Homebrew cask has been [integrated](https://github.com/caskroom/homebrew-cask/pull/15381) with Homebrew proper. If you are experiencing problems installing casks and
+  have an older installation of Homebrew, running `brew uninstall --force brew-cask; brew update` should fix things.
+- If you are updating from an older version of sprout-wrap, your homebrew configuration in soloistrc might be under `node_attributes.sprout.homebrew.formulae`
+  and `node_attributes.sprout.homebrew.casks`. These will need to be updated to `node_attributes.homebrew.formulas` (note the change from formulae to formulas)
+  and `node_attributes.homebrew.casks`.
 
-### Testing
-Karma
+## Roadmap
 
-Spectacular Test Runner for JavaScript.
+See Pivotal Tracker: <https://www.pivotaltracker.com/s/projects/884116>
 
-### Frameworks
-HTML5 Boilerplate
+## Discussion List
 
-HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
+  Join [sprout-users@googlegroups.com](https://groups.google.com/forum/#!forum/sprout-users) if you use Sprout.
 
+## References
 
-
-##QIFA
-(Questions I Frequently Asked)
-
-*Should I use grunt or gulp?*
-
-*Should I use Bower or NPM?*
-
-*How do I test that my web app can run on a server and not just my local setup without actually pushing it and breaking the live app?*
-
+* Slides from @hiremaga's [lightning talk on Sprout](http://sprout-talk.cfapps.io/) at Pivotal Labs in June 2013
+* [Railscast on chef-solo](http://railscasts.com/episodes/339-chef-solo-basics) by Ryan Bates (PAID)
